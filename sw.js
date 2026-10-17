@@ -1,7 +1,7 @@
 // Offline cache for the installed (Add to Home Screen) game. Cache-first for same-origin GETs.
 // index.html is revalidated in the background; bump VERSION to drop stale assets. Paths are relative to the
 // SW scope, so this works under a GitHub Pages subpath (Vite base './').
-const VERSION = 'anchor-v1';
+const VERSION = 'anchor-v2';
 const PXL = ['classes16', 'hero', 'npc_brine', 'npc_dex', 'npc_marlo', 'npc_ned', 'npc_pip', 'npc_sable', 'npc_wren', 'tiles', 'unit_n', 'water'];
 const PRECACHE = [
   './',
