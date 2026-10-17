@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+    <meta name="theme-color" content="#1b2433" />
+    <title>Anchor 3D (pilot)</title>
+    <style>html,body{touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;background:#1b2433;height:100%;margin:0;font-family:system-ui,sans-serif;overflow:hidden}#app{position:fixed;inset:0}#app canvas{width:100%;height:100%;display:block}#hud{left:0;right:0;top:calc(8px + env(safe-area-inset-top));text-align:center;color:#fff;text-shadow:0 2px #0008;pointer-events:none;font-size:15px;font-weight:700;position:fixed}#hud .sub{opacity:.85;font-size:12px;font-weight:500}#banner{opacity:0;color:#ffe066;letter-spacing:2px;text-shadow:0 4px #6a3b00,0 0 24px #000a;pointer-events:none;white-space:nowrap;font:900 44px system-ui,sans-serif;transition:transform .35s cubic-bezier(.2,1.6,.4,1),opacity .25s;position:fixed;top:42%;left:50%;transform:translate(-50%,-50%)scale(.6)}#banner.on{opacity:1;transform:translate(-50%,-50%)scale(1)}#flash{opacity:0;pointer-events:none;background:#fff;position:fixed;inset:0}#joy{opacity:0;pointer-events:none;background:#ffffff10;border:2px solid #ffffff40;border-radius:50%;width:96px;height:96px;margin:-48px 0 0 -48px;transition:opacity .12s;position:fixed}#joy.on{opacity:1}#knob{background:#ffffff38;border-radius:50%;width:40px;height:40px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}#abtn{right:calc(28px + env(safe-area-inset-right));bottom:calc(26px + env(safe-area-inset-bottom));color:#fffd;background:#e8414155;border:2px solid #ffffff70;border-radius:50%;justify-content:center;align-items:center;width:68px;height:68px;font:800 26px system-ui,sans-serif;display:none;position:fixed}#abtn.held{background:#e84141aa;transform:scale(.94)}html.touch.show-a #abtn{display:flex}#rotate{color:#fff;z-index:10;text-align:center;background:#1b2433;flex-direction:column;justify-content:center;align-items:center;font:700 18px system-ui,sans-serif;display:none;position:fixed;inset:0}#rotate .sub{opacity:.75;font-size:14px;font-weight:400}#rotate .phone{font-size:56px;animation:1.6s ease-in-out infinite tilt}@keyframes tilt{0%,30%{transform:rotate(0)}60%,to{transform:rotate(-90deg)}}html.touch.portrait #rotate{display:flex}</style>
+    <script type="module" crossorigin src="./assets/three-BvCkQ66D.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/ai-CKzchM8G.js">
+  </head>
+  <body>
+    <div id="app"></div>
+    <div id="hud"></div>
+    <div id="banner"></div>
+    <div id="flash"></div>
+    <div id="joy"><div id="knob"></div></div>
+    <div id="abtn" aria-label="A">A</div>
+    <div id="rotate"><div class="phone">📱</div><p>ROTATE YOUR PHONE</p><p class="sub">Anchor plays in landscape</p></div>
+  </body>
+</html>
