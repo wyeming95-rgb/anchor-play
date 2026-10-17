@@ -12,8 +12,19 @@
     <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
     <link rel="icon" type="image/png" href="./icons/icon-192.png" />
     <title>Anchor — Chapter 1</title>
-    <script type="module" crossorigin src="./assets/index-PRcJC8co.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-D67IuDNw.css">
+      <script>
+      // iOS Safari ignores user-scalable=no; block double-tap and pinch zoom manually.
+      (function () {
+        var last = 0, opt = { passive: false };
+        var stop = function (e) { e.preventDefault(); };
+        ['gesturestart', 'gesturechange', 'gestureend', 'dblclick'].forEach(function (t) { document.addEventListener(t, stop, opt); });
+        document.addEventListener('touchend', function (e) { var now = Date.now(); if (now - last < 350) e.preventDefault(); last = now; }, opt);
+        document.addEventListener('touchmove', function (e) { if (e.touches.length > 1 || (e.scale !== undefined && e.scale !== 1)) e.preventDefault(); }, opt);
+        document.addEventListener('touchstart', function (e) { if (e.touches.length > 1) e.preventDefault(); }, opt);
+      })();
+    </script>
+    <script type="module" crossorigin src="./assets/index-C1dRobEO.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-AYjVT9yR.css">
   </head>
   <body>
     <main>
