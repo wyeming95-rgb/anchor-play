@@ -17,6 +17,22 @@
         document.addEventListener('touchstart', function (e) { if (e.touches.length > 1) e.preventDefault(); }, opt);
       })();
     </script>
+      <script>
+      // Visible error overlay so failures show text instead of a blank screen.
+      (function () {
+        function show(msg) {
+          var d = document.getElementById('err-overlay');
+          if (!d) { d = document.createElement('pre'); d.id = 'err-overlay';
+            d.style.cssText = 'position:fixed;inset:0;margin:0;padding:16px;z-index:99999;background:rgba(20,10,10,.92);color:#ffd2d2;font:12px/1.4 ui-monospace,monospace;white-space:pre-wrap;overflow:auto';
+            (document.body || document.documentElement).appendChild(d); }
+          d.textContent += msg + '\n';
+        }
+        window.__anchorShowError = show;
+        window.addEventListener('error', function (e) { show('Error: ' + (e.message || e.type) + (e.filename ? '\n  at ' + e.filename + ':' + e.lineno : '')); }, true);
+        window.addEventListener('unhandledrejection', function (e) { show('Unhandled: ' + (e.reason && (e.reason.stack || e.reason.message) || e.reason)); });
+        setTimeout(function () { if (!window.__anchor3d) show('Anchor 3D did not start (no WebGL, blocked script, or stale cache). Try closing the tab and reopening.'); }, 8000);
+      })();
+    </script>
     <script type="module" crossorigin src="./assets/three-BvCkQ66D.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/ai-CKzchM8G.js">
   </head>
