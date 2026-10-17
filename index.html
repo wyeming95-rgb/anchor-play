@@ -1,6 +1,13 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <script>
+      // If an old service worker served this 2D page for another app under the site (e.g. ./3d/), unregister it and reload.
+      if (/\/3d(\/|$)/.test(location.pathname) && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations().then(function (rs) { return Promise.all(rs.map(function (r) { return r.unregister(); })); }).then(function () { location.reload(); });
+      }
+    </script>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
     <meta name="theme-color" content="#0d0d16" />

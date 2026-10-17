@@ -1,7 +1,7 @@
 // Offline cache for the installed (Add to Home Screen) game. Cache-first for same-origin GETs.
 // index.html is revalidated in the background; bump VERSION to drop stale assets. Paths are relative to the
 // SW scope, so this works under a GitHub Pages subpath (Vite base './').
-const VERSION = 'anchor-v5';
+const VERSION = 'anchor-v6';
 const PXL = ['classes16', 'hero', 'npc_brine', 'npc_dex', 'npc_marlo', 'npc_ned', 'npc_pip', 'npc_sable', 'npc_wren', 'tiles', 'unit_n', 'water'];
 const PRECACHE = [
   './',
@@ -35,7 +35,14 @@ self.addEventListener('activate', (e) => {
 
 self.addEventListener('fetch', (e) => {
   const req = e.request;
-  if (req.method !== 'GET' || new URL(req.url).origin !== location.origin) return;
+  const url = new URL(req.url);
+  if (req.method !== 'GET' || url.origin !== location.origin) return;
+  // Never touch other apps hosted under this scope (e.g. the 3D pilot at ./3d/).
+  const scopePath = new URL(self.registration.scope).pathname;
+  const rel = url.pathname.startsWith(scopePath) ? url.pathname.slice(scopePath.length) : url.pathname;
+  if (rel.startsWith('3d/') || rel === '3d') return;
+  // Only the game's own page (scope root / index.html) is served from the page cache key.
+  if (req.mode === 'navigate' && !(rel === '' || rel === 'index.html')) return;
   e.respondWith(
     caches.open(VERSION).then(async (cache) => {
       const nav = req.mode === 'navigate';
